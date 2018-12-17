@@ -2,12 +2,11 @@
   "name": "blog",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/berkoztrk/blog.git"
   },
-  "author": "",
+  "author": "Berk Öztürk",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/berkoztrk/blog/issues"
@@ -22,6 +21,7 @@
     "debug": "~2.6.9",
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
+    "mongodb": "^3.1.10",
     "morgan": "~1.9.0",
     "pug": "2.0.0-beta11"
   }

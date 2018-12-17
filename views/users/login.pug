@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+  h1= 'Login'
+  form.pure-form.pure-form-stacked(action="/users/login", method="post")
+    legend
+    fieldset
+      label(for="username") Username:
+      input#username(type="text", name="username",placeholder="Username")
+
+      label(for="password") Password:
+      input#password(type="password", name="password",placeholder="Password")
+    
+      input.pure-button.pure-button-primary(type="submit", value="Login")
