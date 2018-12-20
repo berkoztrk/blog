@@ -20,7 +20,7 @@ router.post('/login', function(req, res, next) {
       res.render('index');
     }
     else{
-      res.render('users/login',{failureMessage : 'Invalid user'});
+      res.render('users/login',{failureMessage : 'Invalid usera'});
     }
 
 });
