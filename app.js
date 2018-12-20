@@ -5,9 +5,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const uuid = require('uuid/v4');
 const session = require('express-session');
-const passport = require('passport');
-const LocalStrategy = require('passport-local');
-const config = require('./config');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -25,20 +22,6 @@ app.use(session({
   saveUninitialized: true
 }))
 
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    if(config.username == username && config.password == password){
-      var user = {
-        username : username,
-        password : password
-      };
-      return done(null, user);
-    }
-    else{
-      return done(null, false);
-    }
-  }
-));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

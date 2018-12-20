@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const passport = require('passport');
+var adminUser = require('../config/adminuser')
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -13,15 +13,16 @@ router.get('/login', function(req, res, next) {
 });
 
 router.post('/login', function(req, res, next) {
-  passport.authenticate('local', function(err,user,info) {
-    if(err || !user) {
-      res.render('users/login',{failureMessage : 'Invalid user'});
+
+    var localLoginSuccessful = adminUser.loginAdmin(req.body.username,req.body.password);
+    if(localLoginSuccessful) {
+      req.session.user = { username : req.body.username, password:req.body.password};
+      res.render('index');
     }
     else{
-      res.session.user = user;
-      res.render('/index');
+      res.render('users/login',{failureMessage : 'Invalid user'});
     }
-  }(req,res,next));
+
 });
 
 module.exports = router;
