@@ -4,6 +4,11 @@ block content
   h1= 'Create Blog'
   form(action="/blogs/create", method="post")
     legend
+
+    div.form-group
+      label(for="id") Id
+      input.form-control(type="text",id="id",name="id",readonly)
+
     div.form-group
       label(for="title") Title
       input.form-control(type="text",id="title",name="title")

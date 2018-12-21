@@ -5,9 +5,10 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const uuid = require('uuid/v4');
 const session = require('express-session');
-const MongoClient = require("mongodb").MongoClient;
 const mongoose = require("mongoose");
 const appConfig = require("./config");
+const bodyParser = require('body-parser');
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -35,7 +36,7 @@ app.use(session({
   saveUninitialized: true
 }))
 
-
+app.use(bodyParser.urlencoded({ extended: true }));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');

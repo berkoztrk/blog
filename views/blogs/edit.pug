@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+  h1= 'Edit Blog'
+  form(action="/blogs/edit", method="post")
+    legend
+    
+    div.form-group
+      label(for="id") Id
+      input.form-control(type="text",id="id",name="id",value = blog.id,readonly)
+
+    div.form-group
+      label(for="title") Title
+      input.form-control(type="text",id="title",name="title",value = blog.title)
+    
+    div.form-group
+      label(for="content") Content:
+      textarea#content.form-control(name="content", cols="30", rows="10") #{blog.content}
+
+    div.form-group
+      button.btn.btn-primary(type="submit") Save Blog

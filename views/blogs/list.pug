@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+
+    if Message
+        div.success #{Message}
+    
+    div
+        a.btn.btn-primary.btn-sm.float-right.m-3(href="/blogs/create") Create New
+    table.table.table-bordered
+        thead.thead-dark
+            tr
+                th(scope="col") #
+                th(scope="col") Title
+                th(scope="col") Edit
+                th(scope="col") Delete
+
+        tbody
+            each blog in blogs
+                tr(scope="row")
+                    td #{blog.id}
+                    td #{blog.title}
+                    td
+                        a.btn.btn-warning.btn-sm(href= "/blogs/edit/" + blog.id ) Edit
+                    td
+                        a.btn.btn-danger.btn-sm.btn-delete(href="/blogs/delete/" + blog.id) Delete
+
+    script(type="text/javascript", src="/scripts/blog/list.js")
