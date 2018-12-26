@@ -2,7 +2,7 @@ extends ../layout
 
 block content
   h1= 'Edit Blog'
-  form(action="/blogs/edit", method="post")
+  form(id="blog-form",action="/blogs/edit", method="post")
     legend
     
     div.form-group
@@ -14,8 +14,16 @@ block content
       input.form-control(type="text",id="title",name="title",value = blog.title)
     
     div.form-group
-      label(for="content") Content:
-      textarea#content.form-control(name="content", cols="30", rows="10") #{blog.content}
+      label(for="summary") Summary:
+      textarea.form-control(name="summary", cols="30", rows="10",maxlength=200) #{blog.summary}
 
-    div.form-group
-      button.btn.btn-primary(type="submit") Save Blog
+    div.blog-editor
+      label(for="content") Content:
+      textarea(id="content",name="content",style="display:none;")
+      .editor !{blog.content}
+    
+    div
+      button.btn.btn-primary.mt-5.mb-5(type="submit") Save Blog
+
+
+  script(type="text/javascript",src="/scripts/blog/create-edit.js")

@@ -3,7 +3,11 @@ const Schema = mongoose.Schema;
 
 const blogSchema = Schema({
     title : String,
-    content: String
+    content: String,
+    summary: {
+        type: String,
+        maxlength: 200
+    }
 });
 
 var Blog = mongoose.model("Blog",blogSchema);

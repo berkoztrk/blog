@@ -1,10 +1,46 @@
 body {
-  padding: 50px;
-  font-family: 'Roboto', sans-serif;
+  /* font-family: 'Roboto', sans-serif; */
+  background: #FFFFFF;
+  color : rgba(0,0,0,.84);
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
-a {
-  color: #00B7FF;
+.blog-content{ 
+  font-family: 'Aleo', serif;
+  padding: 16px;
+}
+
+.mb-48{
+  margin-bottom: 48px !important;
+}
+
+a,a:hover,a:visited{
+  text-decoration: none;
+}
+
+a{
+  color: #0E1C2E ;
+}
+
+.content-block{
+  max-width: 1048px;
+  margin: 0 auto;
+}
+
+.navbar{
+  padding: 0 16px !important;
+  height: 64px !important;
+  border-bottom:1px solid #dadada;
+}
+
+.admin-link-header{
+  background: #4c4c4c;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+}
+.admin-link-header a {
+  color: #fff;
 }
 
 info, .success, .warning, .error, .validation {
@@ -33,4 +69,8 @@ info, .success, .warning, .error, .validation {
 .validation{
   color: #D63301;
   background-color: #FFCCBA;
+}
+
+h1{
+  margin: 16px 0;
 }

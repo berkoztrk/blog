@@ -3,7 +3,7 @@ const router = express.Router();
 const blogService = require("../services/blogService")
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/list', function(req, res, next) {
     blogService.getAll().then((blogs) =>{
       res.render('blogs/list', {blogs: blogs});
     }).catch((err) => {
@@ -26,15 +26,7 @@ router.get('/content/:id',(req,res,next) => {
 });
 
 router.get('/create', function(req, res, next) {
-    if(req.params.id){
-       blogService.getById(req.params.id).then((blog) => {
-        res.render('blogs/create', { blog : blog });
-       }).catch((err) => {
-        res.render('error')
-       });
-    }
-    else
-      res.render('blogs/create'); 
+    res.render('blogs/create'); 
 });
 
 router.post('/create',function(req,res,next){

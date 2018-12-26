@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var adminUser = require('../config/adminuser')
 
-/* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
@@ -12,15 +11,19 @@ router.get('/login', function(req, res, next) {
   res.render('users/login');
 });
 
-router.post('/login', function(req, res, next) {
+router.get('/logout', function(req, res, next) {
+  req.session.user = null;
+  res.redirect('/');
+});
 
+router.post('/login', function(req, res, next) {
     var localLoginSuccessful = adminUser.loginAdmin(req.body.username,req.body.password);
     if(localLoginSuccessful) {
       req.session.user = { username : req.body.username, password:req.body.password};
-      res.render('index');
+      res.redirect('/');
     }
     else{
-      res.render('users/login',{failureMessage : 'Invalid usera'});
+      res.render('users/login',{failureMessage : 'Invalid user'});
     }
 
 });

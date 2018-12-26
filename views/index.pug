@@ -1,5 +1,10 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+    .blog-content
+        h1 Blogs
+        each blog in blogs
+            div.mb-48
+                a(href="/blogs/content/" + blog.id)
+                    h4  #{blog.title}
+                    p   #{blog.summary}

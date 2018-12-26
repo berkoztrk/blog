@@ -7,7 +7,6 @@ const uuid = require('uuid/v4');
 const session = require('express-session');
 const mongoose = require("mongoose");
 const appConfig = require("./config");
-const bodyParser = require('body-parser');
 
 
 var indexRouter = require('./routes/index');
@@ -27,16 +26,17 @@ db.once('open', function() {
 
 app.use(session({
   genid: (req) => {
-    console.log('Inside the session middleware')
-    console.log(req.sessionID)
     return uuid() // use UUIDs for session IDs
   },
-  secret: 'dumdumdidum',
+  secret: 'blog',
   resave: false,
   saveUninitialized: true
-}))
+}));
+app.use(function(req,res,next){
+  res.locals.session = req.session;
+  next();
+});
 
-app.use(bodyParser.urlencoded({ extended: true }));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -47,6 +47,26 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// Restricted areas
+app.use(function(req,res,next)  {
+  var restrictedPaths = [
+    '/blogs/create',
+    '/blogs/edit',
+    '/blogs/list',
+    '/blogs/delete'
+  ];
+
+  if(!req.session.user){
+    for(var i = 0;i< restrictedPaths.length; i++){
+      if(req.path.includes(restrictedPaths[i])){
+        res.redirect('/users/login')
+      }
+    }
+  }
+  next();
+})
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/blogs',blogsRouter)
@@ -55,6 +75,8 @@ app.use('/blogs',blogsRouter)
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
+
 
 // error handler
 app.use(function(err, req, res, next) {
