@@ -9,6 +9,7 @@ const blogSchema = Schema({
         maxlength: 200
     }
 });
+blogSchema.index({title: 'text',summary: 'text', description: 'text'})
 
 var Blog = mongoose.model("Blog",blogSchema);
 
@@ -37,6 +38,11 @@ var blogService =  {
 
     getAll : async () => {
         const blogs = await Blog.find();
+        return blogs;
+    },
+
+    search : async(searchString) => {
+        const blogs = await Blog.find({$text : {$search :searchString }});
         return blogs;
     }
 

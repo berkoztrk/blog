@@ -31,6 +31,7 @@ a{
   padding: 0 16px !important;
   height: 64px !important;
   border-bottom:1px solid #dadada;
+  box-shadow: 1px 4px 32px #eee;
 }
 
 .admin-link-header{
@@ -73,4 +74,9 @@ info, .success, .warning, .error, .validation {
 
 h1{
   margin: 16px 0;
+}
+
+.summary{
+  color: rgba(0,0,0,.54)!important;
+  fill: rgba(0,0,0,.54)!important;
 }
